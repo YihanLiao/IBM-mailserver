@@ -1,3 +1,3 @@
 mailsender=
 mailsenderpassword=
-corslist=["https://pages.github.ibm.com", "https://proto.kttu.cc/", "http://localhost:4200", "http://localhost:8080"]
+corslist=["https://pages.github.ibm.com", "https://proto.kttu.cc", "http://localhost:4200", "http://localhost:8080"]
