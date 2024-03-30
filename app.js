@@ -23,11 +23,10 @@ app.set('mailTool', nodemailer.createTransport({
   }
 }));
 
+const corslist = JSON.parse(process.env.corslist);
+
 app.use(cors({
-  origin: [
-    'https://pages.github.ibm.com',
-    'http://localhost:4200',
-  ],
+  origin: corslist,
   methods: 'POST,OPTIONS'
 }));
 
