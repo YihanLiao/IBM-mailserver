@@ -2,4 +2,30 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form
+    div
+      label(for="target") 信箱
+      input(id="target")
+    div
+      label(for="subject") 信件標題
+      input(id="subject")
+    textarea(id="mailcontent")
+  button(onclick="send()") 發送
+  script.
+    function postData(url, data) {
+      // Default options are marked with *
+      return fetch(url, {
+        body: JSON.stringify(data),
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+      }).then((response) => response.json());
+    }
+    const send = function() {
+      const target = document.getElementById('target').value;
+      const subject = document.getElementById('subject').value;
+      const mailcontent = document.getElementById('mailcontent').value;
+      postData('/send', { mailcontent, target, subject})
+      .then((res) => console.log(res))
+    }

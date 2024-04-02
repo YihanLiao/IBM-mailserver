@@ -4,24 +4,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var nodemailer = require('nodemailer');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 
 var app = express();
 
+const { mailTool } = require(path.resolve('utils', 'mail'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.set('mailTool', nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.mailsender,
-    pass: process.env.mailsenderpassword
-  }
-}));
+app.set('mailTool', mailTool);
 
 const corslist = JSON.parse(process.env.corslist);
 
